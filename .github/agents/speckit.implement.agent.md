@@ -88,7 +88,20 @@ You **MUST** consider the user input before proceeding (if not empty).
    - **IF EXISTS**: Read .specify/memory/constitution.md for governance constraints
    - **IF EXISTS**: Read quickstart.md for integration scenarios
 
-4. **Project Setup Verification**:
+4. **Spec state enforcement**:
+   - Read `spec.md` and confirm the current state before work begins.
+   - If the feature is in `Rascunho`, **STOP** and report that implementation cannot start until the spec is approved.
+   - If the feature is in `Aprovada`, update the spec status to `Em implementação` before continuing.
+   - If the feature is already in `Em implementação`, keep it there and continue the execution plan.
+   - If the feature is `Implementada`, **STOP** and report that the feature is already complete; do not re-implement it.
+   - Keep the state in `Em implementação` while work is in progress and before any final validation is complete.
+   - Only move the state to `Implementada` at the very end of the workflow when all conditions are satisfied:
+     - all tasks in `tasks.md` are marked complete;
+     - validation evidence exists in `quickstart.md` or equivalent verification doc;
+     - the feature passes the required checks for the current implementation.
+   - If any required condition fails, do not move to `Implementada`; keep the spec in `Em implementação` and report the blocked reason explicitly.
+
+5. **Project Setup Verification**:
    - **REQUIRED**: Create/verify ignore files based on actual project setup:
 
    **Detection & Creation Logic**:
@@ -132,27 +145,27 @@ You **MUST** consider the user input before proceeding (if not empty).
    - **Terraform**: `.terraform/`, `*.tfstate*`, `*.tfvars`, `.terraform.lock.hcl`
    - **Kubernetes/k8s**: `*.secret.yaml`, `secrets/`, `.kube/`, `kubeconfig*`, `*.key`, `*.crt`
 
-5. Parse tasks.md structure and extract:
+6. Parse tasks.md structure and extract:
    - **Task phases**: Setup, Tests, Core, Integration, Polish
    - **Task dependencies**: Sequential vs parallel execution rules
    - **Task details**: ID, description, file paths, parallel markers [P]
    - **Execution flow**: Order and dependency requirements
 
-6. Execute implementation following the task plan:
+7. Execute implementation following the task plan:
    - **Phase-by-phase execution**: Complete each phase before moving to the next
    - **Respect dependencies**: Run sequential tasks in order, parallel tasks [P] can run together  
    - **Follow TDD approach**: Execute test tasks before their corresponding implementation tasks
    - **File-based coordination**: Tasks affecting the same files must run sequentially
    - **Validation checkpoints**: Verify each phase completion before proceeding
 
-7. Implementation execution rules:
+8. Implementation execution rules:
    - **Setup first**: Initialize project structure, dependencies, configuration
    - **Tests before code**: If you need to write tests for contracts, entities, and integration scenarios
    - **Core development**: Implement models, services, CLI commands, endpoints
    - **Integration work**: Database connections, middleware, logging, external services
    - **Polish and validation**: Unit tests, performance optimization, documentation
 
-8. Progress tracking and error handling:
+9. Progress tracking and error handling:
    - Report progress after each completed task
    - Halt execution if any non-parallel task fails
    - For parallel tasks [P], continue with successful tasks, report failed ones
@@ -160,7 +173,7 @@ You **MUST** consider the user input before proceeding (if not empty).
    - Suggest next steps if implementation cannot proceed
    - **IMPORTANT** For completed tasks, make sure to mark the task off as [X] in the tasks file.
 
-9. Completion validation:
+10. Completion validation:
    - Verify all required tasks are completed
    - Check that implemented features match the original specification
    - Validate that tests pass and coverage meets requirements
@@ -169,7 +182,7 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 Note: This command assumes a complete task breakdown exists in tasks.md. If tasks are incomplete or missing, suggest running `/speckit.tasks` first to regenerate the task list.
 
-10. **Check for extension hooks**: After completion validation, check if `.specify/extensions.yml` exists in the project root.
+11. **Check for extension hooks**: After completion validation, check if `.specify/extensions.yml` exists in the project root.
     - If it exists, read it and look for entries under the `hooks.after_implement` key
     - If the YAML cannot be parsed or is invalid, skip hook checking silently and continue normally
     - Filter out hooks where `enabled` is explicitly `false`. Treat hooks without an `enabled` field as enabled by default.

@@ -4,7 +4,7 @@
 
 **Created**: [DATE]
 
-**Status**: Draft
+**Status**: Rascunho
 
 **Input**: User description: "$ARGUMENTS"
 

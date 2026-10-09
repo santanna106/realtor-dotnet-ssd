@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealtorApi", "backend\src\RealtorApi\RealtorApi.csproj", "{3B11F2DC-78DF-4578-ACFB-01D3081C80F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealtorApiTests", "backend\tests\RealtorApiTests\RealtorApiTests.csproj", "{7E471D2D-4819-425C-B028-305D796D7D18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealtorWeb", "frontend\src\RealtorWeb\RealtorWeb.csproj", "{3947C07A-DC7A-4301-B1BE-A5627EE69296}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealtorWebTests", "frontend\test\RealtorWeb\RealtorWebTests.csproj", "{BDB5D5A4-C97E-41C0-BD14-74B8AFEDFC32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B11F2DC-78DF-4578-ACFB-01D3081C80F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B11F2DC-78DF-4578-ACFB-01D3081C80F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B11F2DC-78DF-4578-ACFB-01D3081C80F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B11F2DC-78DF-4578-ACFB-01D3081C80F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E471D2D-4819-425C-B028-305D796D7D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E471D2D-4819-425C-B028-305D796D7D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E471D2D-4819-425C-B028-305D796D7D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E471D2D-4819-425C-B028-305D796D7D18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3947C07A-DC7A-4301-B1BE-A5627EE69296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3947C07A-DC7A-4301-B1BE-A5627EE69296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3947C07A-DC7A-4301-B1BE-A5627EE69296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3947C07A-DC7A-4301-B1BE-A5627EE69296}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDB5D5A4-C97E-41C0-BD14-74B8AFEDFC32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDB5D5A4-C97E-41C0-BD14-74B8AFEDFC32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDB5D5A4-C97E-41C0-BD14-74B8AFEDFC32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDB5D5A4-C97E-41C0-BD14-74B8AFEDFC32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

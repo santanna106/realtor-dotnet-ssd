@@ -1,12 +1,11 @@
 <!--
 Relatório de impacto:
-- Versão: modelo não ratificado -> 1.0.0 (constituição inicial).
-- Princípios modificados: não se aplica; estabelecem-se os princípios iniciais.
-- Seções adicionadas: Restrições técnicas; Fluxo de desenvolvimento e qualidade.
+- Versão: 1.0.0 -> 1.1.0
+- Princípios modificados: II. Spec-Driven Development (expansão para ciclo de estados de specs).
+- Seções adicionadas: Ciclo de estado de specs; regras de transição e bloqueios operacionais.
 - Seções removidas: nenhuma.
-- Modelos revisados: plan-template.md ✅ sem alterações necessárias; spec-template.md ✅ sem alterações necessárias; tasks-template.md ✅ sem alterações necessárias.
-- Diretrizes revisadas: copilot-instructions.md e as instruções de backend, frontend e persistência ✅ coerentes; não requerem alterações.
-- Comandos em .specify/templates/commands/: não há arquivos nesse caminho.
+- Modelos revisados: spec-template.md ✅ atualizado para status inicial em português; plan-template.md ✅ sem alterações necessárias; tasks-template.md ✅ sem alterações necessárias.
+- Comandos e hooks: .specify/extensions.yml ✅ já registra before_implement e after_implement; mantidos conforme a governança.
 - Pendências: nenhuma.
 -->
 
@@ -210,6 +209,38 @@ Se o usuário responder com texto livre ou escolher D, o agente DEVE aceitar a r
 
 Ao concluir todas as perguntas, o agente DEVE exibir um resumo das decisões tomadas e gerar o artefato correspondente: `spec.md`, seção de esclarecimentos em `spec.md`, ou `plan.md`.
 
+## Ciclo de estado de specs
+
+Toda spec em `specs/` DEVE manter um estado canônico e rastreável durante o ciclo de vida da iniciativa.
+
+Os estados válidos são:
+
+* `Rascunho`: estado inicial ao criar a spec.
+* `Aprovada`: a spec foi revisada e aceita para execução.
+* `Em implementação`: a implementação foi iniciada e a spec está em execução.
+* `Implementada`: a implementação foi concluída e validada.
+
+A transição entre estados DEVE ocorrer automaticamente no fluxo do Spec Kit e NÃO por edição manual ad hoc do documento de spec, salvo quando o próprio comando de criação ou execução do fluxo exigir a atualização do campo de status.
+
+As transições permitidas são exclusivamente:
+
+1. `Rascunho` -> `Aprovada`
+2. `Aprovada` -> `Em implementação`
+3. `Em implementação` -> `Implementada`
+
+Qualquer outra transição é proibida. Se uma ação tentar avançar para um estado inválido, o agente DEVE manter a spec em `Em implementação` e reportar o bloqueio com a causa explícita.
+
+A spec SOMENTE pode ser marcada como `Implementada` quando todas as condições abaixo forem atendidas:
+
+* existe ao menos um arquivo `tasks.md` para a feature;
+* todas as tarefas listadas em `tasks.md` estão marcadas como concluídas;
+* existe evidência de validação em `quickstart.md` ou em documentação equivalente de execução e verificação;
+* a execução foi validada conforme os critérios do plano e da spec.
+
+Se alguma dessas condições falhar, a spec DEVE permanecer em `Em implementação` e o agente DEVE relatar claramente o motivo do bloqueio antes de concluir a execução.
+
+A mudança automática de estado DEVE valer para os comandos de implementação e para a execução das fases do workflow, de modo que o estado reflita o progresso real e não um estado manual e inconsistentes.
+
 ## Governança
 
 Esta constituição é o documento orientador do projeto e tem precedência sobre qualquer outra prática, convenção ou preferência individual.
@@ -247,4 +278,4 @@ Se um agente detectar divergência entre um script do spec-kit e esta constitui�
 A única resolução legítima é a decisão humana documentada via emenda constitucional ou ajuste explícito de convenção local.
 
 
-**Versão**: 1.0.0 | **Ratificada**: 2026-10-05 | **Última emenda**: 2026-10-05
+**Versão**: 1.1.0 | **Ratificada**: 2026-10-05 | **Última emenda**: 2026-10-09
